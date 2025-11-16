@@ -1,0 +1,90 @@
+# Environment files (NEVER commit with secrets!)
+.env
+.env.local
+.env.*.local
+.env.development
+
+# Environment templates for Railway
+# These can be committed as templates (no real secrets)
+# Update Railway UI with real values
+!.env.staging
+!.env.production
+
+# But ignore if they contain actual secrets
+.env.staging.secret
+.env.production.secret
+.env.test
+
+# Environment backups
+.env.backup.*
+
+# IDE and editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+vendor/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+*.wasm
+
+# Temporary files
+*.tmp
+*.bak
+.cache/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local development
+local/
+.local/
+
+# Testing
+coverage/
+.nyc_output/
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Conductor workspaces (if using Conductor)
+.conductor/

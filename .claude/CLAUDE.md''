@@ -1,0 +1,139 @@
+# cp-v2 - Claude Instructions
+
+## Project Overview
+Brief description of the project, its goals, and scope.
+
+## Code Structure
+```
+/src         - Source code
+/tests       - Test files
+/docs        - Documentation
+/scripts     - Build and utility scripts
+```
+
+## Key Technologies
+- Framework: [e.g., Next.js, Express, FastAPI]
+- Language: [TypeScript, JavaScript, Python, Go]
+- Database: [PostgreSQL, MongoDB, etc.]
+- Key libraries: [list important dependencies]
+
+## Development Setup
+```bash
+# Clone and install
+git clone [repo-url]
+cd cp-v2
+
+# Install dependencies (adjust for your project type)
+npm install        # Node.js
+# pip install -r requirements.txt  # Python
+# go mod download  # Go
+
+# Run development server
+npm run dev
+# python main.py
+# go run main.go
+
+# Run tests
+npm test
+# pytest
+# go test ./...
+
+# Build for production
+npm run build
+```
+
+## Git & Branching
+- Main branch: `main`
+- Feature branches: `claude/feature-name` (for Claude-generated code)
+- Manual branches: `feature/short-description`
+- Bug fixes: `fix/short-description`
+
+**Branch Workflow:**
+1. Always branch from latest `main`
+2. Keep branches focused (one feature/fix per branch)
+3. Rebase on main regularly to stay current
+4. Never commit directly to `main`
+
+## Code Style & Conventions
+- **Formatting:** [Prettier / ESLint / Black / gofmt]
+- **Naming:**
+  - Variables/functions: camelCase (JS/TS) or snake_case (Python)
+  - Classes/components: PascalCase
+  - Constants: UPPER_SNAKE_CASE
+- **Comments:** Add comments for non-obvious logic only
+- **File organization:** [Your conventions]
+
+## Common Tasks
+
+### Adding a New Feature
+1. Check if there's a GitHub issue (create one if needed)
+2. Checkout `main` and pull latest: `git checkout main && git pull`
+3. Create a branch: `git checkout -b claude/feature-name`
+4. Write code following project conventions
+5. Write/update tests
+6. Commit regularly with clear messages
+7. Push and create a PR
+8. Tag PR with `by-claude` label
+
+### Fixing a Bug
+1. Create a branch: `git checkout -b fix/bug-description`
+2. Reproduce the bug with a test (if possible)
+3. Fix the bug
+4. Verify the test passes
+5. Create a PR
+
+### Creating a Pull Request
+1. Verify changes: `git diff main`
+2. Push branch: `git push -u origin branch-name`
+3. Create PR with:
+   - Clear title (no issue number in title)
+   - Description starting with issue number
+   - Test plan checklist
+4. Tag with `by-claude` if applicable
+
+## Testing Guidelines
+- Write tests for new features
+- Aim for high code coverage on critical paths
+- Test user behavior, not implementation details
+- Run tests before committing
+
+## Environment Variables
+Check `.env.example` for required environment variables.
+
+```bash
+# Copy example and fill in your values
+cp .env.example .env
+```
+
+**Never commit:**
+- `.env` files with real secrets
+- API keys, tokens, or passwords
+- Database credentials
+
+## Common Issues & Solutions
+
+### Issue: [Common Problem]
+**Symptoms:** What you see
+**Root cause:** Why it happens
+**Fix:** How to resolve
+
+## Important Files & Locations
+- **Environment setup:** `.env.example`
+- **Dependencies:** `package.json` / `requirements.txt` / `go.mod`
+- **Main entry point:** [path to main file]
+
+## When to Ask for Help
+- Architecture decisions
+- Complex refactors
+- Security concerns
+- Performance optimizations
+- Breaking changes
+
+## Updates & Maintenance
+Update this file when:
+- Project structure changes
+- New major patterns emerge
+- Tools/dependencies change
+- Processes are clarified
+
+**Last updated:** YYYY-MM-DD

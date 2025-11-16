@@ -1,0 +1,77 @@
+{
+  "name": "cp-v2",
+  "version": "0.1.0",
+  "type": "node",
+  "created": "2025-11-16",
+  "generator": {
+    "tool": "keithstart",
+    "version": "1.0.0"
+  },
+  "metadata": {
+    "description": "Brief description of what this project does",
+    "tags": [],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/keitharm/cp-v2"
+    },
+    "author": {
+      "name": "Keith Armstrong",
+      "github": "keitharm"
+    }
+  },
+  "structure": {
+    "src": "Source code directory",
+    "tests": "Test files directory",
+    "docs": "Documentation directory",
+    "scripts": "Build and utility scripts"
+  },
+  "dependencies": {
+    "packageManager": "npm",
+    "lockfile": "package-lock.json"
+  },
+  "development": {
+    "conductor": false,
+    "environmentFile": ".env",
+    "mcps": false
+  },
+  "deployment": {
+    "provider": "railway",
+    "environments": {
+      "development": {
+        "url": "http://localhost:${PORT:-3000}",
+        "branch": "current",
+        "envFile": ".env"
+      },
+      "staging": {
+        "url": "https://cp-v2-staging.up.railway.app",
+        "branch": "staging",
+        "envFile": ".env.staging"
+      },
+      "production": {
+        "url": "https://cp-v2.up.railway.app",
+        "branch": "main",
+        "envFile": ".env.production"
+      }
+    },
+    "railway": {
+      "serviceId": "",
+      "projectId": ""
+    }
+  },
+  "tools": {
+    "stack": [
+      "supabase",
+      "shadcn-ui",
+      "tailwind",
+      "railway",
+      "github",
+      "claude-code",
+      "figma"
+    ],
+    "mcps": {
+      "installed": false,
+      "location": "~/.claude/mcp.json",
+      "documentation": ".conductor/docs/mcp-guide.md"
+    }
+  }
+}
