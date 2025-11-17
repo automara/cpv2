@@ -73,7 +73,7 @@ router.post("/process", async (req: Request, res: Response): Promise<void> => {
       res.status(400).json({
         success: false,
         error: "Validation error",
-        details: error.errors,
+        details: error.issues,
       });
       return;
     }
@@ -130,7 +130,7 @@ router.post(
         res.status(400).json({
           success: false,
           error: "Validation error",
-          details: error.errors,
+          details: error.issues,
         });
         return;
       }
@@ -159,7 +159,7 @@ router.post(
  *   }
  * }
  */
-router.get("/health", async (req: Request, res: Response): Promise<void> => {
+router.get("/health", async (_req: Request, res: Response): Promise<void> => {
   try {
     const openrouterConfigured = !!process.env.OPENROUTER_API_KEY;
     const openaiConfigured = !!process.env.OPENAI_API_KEY;
@@ -191,7 +191,7 @@ router.get("/health", async (req: Request, res: Response): Promise<void> => {
  *
  * Response: Full AI pipeline result with sample content
  */
-router.post("/test", async (req: Request, res: Response): Promise<void> => {
+router.post("/test", async (_req: Request, res: Response): Promise<void> => {
   try {
     const sampleContent = `# Getting Started with React Hooks
 

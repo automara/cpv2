@@ -6,9 +6,9 @@
 
 ## Status
 
-**Current Phase:** 2 - AI Agent Pipeline ✅ Complete
-**Next Phase:** 3 - API & Storage
-**Branch:** `automara/phase-2-ai-agents`
+**Current Phase:** 3 - API & Storage ✅ Complete
+**Next Phase:** 4 - Webflow Integration
+**Branch:** `automara/phase-3-api-storage`
 
 ## Project Overview
 
@@ -130,17 +130,26 @@ GET  /health              # Health check
 GET  /                    # API info
 
 # AI Pipeline (Phase 2 ✅)
-POST /api/ai/process      # Process markdown through AI pipeline
-POST /api/ai/test         # Test with sample content
-POST /api/ai/estimate-cost # Estimate processing costs
-GET  /api/ai/health       # Check AI configuration
+POST /api/ai/process        # Process markdown through AI pipeline
+POST /api/ai/test           # Test with sample content
+POST /api/ai/estimate-cost  # Estimate processing costs
+GET  /api/ai/health         # Check AI configuration
 
-# Modules (Phase 3 - Coming Soon)
-POST /api/modules/create  # Create module
-GET  /api/modules         # List modules
-GET  /api/modules/:slug   # Get specific module
-DELETE /api/modules/:id   # Delete module
-POST /api/modules/sync/:id # Sync to Webflow
+# Modules (Phase 3 ✅)
+POST   /api/modules/create     # Create module with AI processing
+POST   /api/modules/upload     # Upload markdown file
+GET    /api/modules            # List modules (with filters)
+GET    /api/modules/stats      # Get module statistics
+POST   /api/modules/search     # Semantic vector search
+GET    /api/modules/:id        # Get module by ID or slug
+PATCH  /api/modules/:id        # Update module
+DELETE /api/modules/:id        # Delete module
+GET    /api/modules/:id/versions   # Get version history
+GET    /api/modules/:id/download   # Download markdown
+GET    /api/modules/:id/files      # List module files
+
+# Webflow (Phase 4 - Coming Soon)
+POST /api/webflow/sync/:id  # Sync module to Webflow CMS
 ```
 
 ## Development
@@ -202,14 +211,49 @@ curl -X POST http://localhost:3000/api/ai/test
 
 **Documentation:** See [docs/AI_PIPELINE.md](./docs/AI_PIPELINE.md) for detailed architecture and usage.
 
-## Phase 3-7: Roadmap
+## Phase 3: API & Storage ✅ Complete
+
+**What's Built:**
+- ✅ Full CRUD operations for modules
+- ✅ File upload with multer middleware (markdown files)
+- ✅ Supabase Storage integration
+- ✅ Semantic vector search (pgvector cosine similarity)
+- ✅ Module versioning system
+- ✅ File download endpoints
+- ✅ Module statistics and filtering
+- ✅ Automatic slug generation
+- ✅ AI pipeline integration on module creation
+- ✅ Quality threshold validation (70+ score required)
+
+**Test It:**
+```bash
+# Create module with JSON body
+curl -X POST http://localhost:3000/api/modules/create \
+  -H "Content-Type: application/json" \
+  -d '{"title": "My Module", "markdownContent": "# Hello World\n\nThis is my module content."}'
+
+# Upload markdown file
+curl -X POST http://localhost:3000/api/modules/upload \
+  -F "file=@my-module.md" \
+  -F "title=My Module"
+
+# List all modules
+curl http://localhost:3000/api/modules
+
+# Search by semantic similarity
+curl -X POST http://localhost:3000/api/modules/search \
+  -H "Content-Type: application/json" \
+  -d '{"query": "react hooks tutorial", "limit": 5}'
+```
+
+## Phase 4-7: Roadmap
 
 | Phase | Status | Description |
 |-------|--------|-------------|
 | **1. Foundation** | ✅ Complete | Node 20, TypeScript, Express, security |
 | **2. AI Agents** | ✅ Complete | 8 specialized agents, Mastra orchestration |
-| **3. API & Storage** | 🔜 Next | CRUD, file handling, Supabase Storage |
-| **4. Security** | ✅ Built-in | Already implemented in Phase 1 |
+| **3. API & Storage** | ✅ Complete | CRUD, file handling, Supabase Storage, semantic search |
+| **4. Webflow Integration** | 🔜 Next | Webflow CMS sync, automated publishing |
 | **5. Admin Portal** | 📋 Planned | React frontend with drag & drop |
 | **6. Testing** | 📋 Planned | Comprehensive test coverage |
 | **7. Production** | 📋 Planned | Railway deploy, monitoring, docs |
