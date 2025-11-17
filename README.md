@@ -6,10 +6,9 @@
 
 ## Status
 
-**Current Phase:** 1 - Foundation ✅ Complete
-**Next Phase:** 2 - AI Agent Pipeline
-**Branch:** `automara/cp-v3-foundation`
-**Commit:** `8495181`
+**Current Phase:** 2 - AI Agent Pipeline ✅ Complete
+**Next Phase:** 3 - API & Storage
+**Branch:** `automara/phase-2-ai-agents`
 
 ## Project Overview
 
@@ -126,14 +125,22 @@ Create storage bucket: `modules` (public)
 ## API Endpoints
 
 ```bash
+# Core
 GET  /health              # Health check
 GET  /                    # API info
-POST /api/modules/create  # Create module (JSON API)
+
+# AI Pipeline (Phase 2 ✅)
+POST /api/ai/process      # Process markdown through AI pipeline
+POST /api/ai/test         # Test with sample content
+POST /api/ai/estimate-cost # Estimate processing costs
+GET  /api/ai/health       # Check AI configuration
+
+# Modules (Phase 3 - Coming Soon)
+POST /api/modules/create  # Create module
 GET  /api/modules         # List modules
 GET  /api/modules/:slug   # Get specific module
 DELETE /api/modules/:id   # Delete module
 POST /api/modules/sync/:id # Sync to Webflow
-POST /api/test-agents     # Test AI pipeline
 ```
 
 ## Development
@@ -176,16 +183,35 @@ curl http://localhost:3000/health
 # {"status":"healthy","timestamp":"...","environment":"development","version":"3.0.0"}
 ```
 
-## Phase 2-7: Roadmap
+## Phase 2: AI Agent Pipeline ✅ Complete
+
+**What's Built:**
+- ✅ 8 specialized AI agents (Summary, SEO, Category, Tags, Schema, Image, Embeddings, Validator)
+- ✅ 3-phase orchestration (parallel + sequential execution)
+- ✅ Cost-optimized model selection (~$0.05 per module)
+- ✅ Quality validation system (0-100 scoring, 70+ threshold)
+- ✅ API endpoints for processing and testing
+- ✅ Comprehensive test suite (unit + integration)
+- ✅ Full documentation
+
+**Test It:**
+```bash
+curl -X POST http://localhost:3000/api/ai/test
+# Returns full AI pipeline result with sample content
+```
+
+**Documentation:** See [docs/AI_PIPELINE.md](./docs/AI_PIPELINE.md) for detailed architecture and usage.
+
+## Phase 3-7: Roadmap
 
 | Phase | Status | Description |
 |-------|--------|-------------|
 | **1. Foundation** | ✅ Complete | Node 20, TypeScript, Express, security |
-| **2. AI Agents** | 🔜 Next | 7 specialized agents, Mastra workflow |
-| **3. API & Storage** | 📋 Planned | CRUD, file handling, Supabase Storage |
+| **2. AI Agents** | ✅ Complete | 8 specialized agents, Mastra orchestration |
+| **3. API & Storage** | 🔜 Next | CRUD, file handling, Supabase Storage |
 | **4. Security** | ✅ Built-in | Already implemented in Phase 1 |
 | **5. Admin Portal** | 📋 Planned | React frontend with drag & drop |
-| **6. Testing** | 📋 Planned | 42 tests (integration, security, errors) |
+| **6. Testing** | 📋 Planned | Comprehensive test coverage |
 | **7. Production** | 📋 Planned | Railway deploy, monitoring, docs |
 
 ## Deployment

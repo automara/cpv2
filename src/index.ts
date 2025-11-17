@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import aiRoutes from './routes/aiRoutes.js';
 
 // Load environment variables
 dotenv.config();
@@ -44,6 +45,9 @@ app.use(
 app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 
+// API Routes
+app.use('/api/ai', aiRoutes);
+
 // Health check endpoint
 app.get('/health', (_req, res) => {
   res.status(200).json({
@@ -62,8 +66,10 @@ app.get('/', (_req, res) => {
     description: 'Automated markdown publishing platform with AI-generated metadata',
     endpoints: {
       health: '/health',
-      modules: '/api/modules',
-      testAgents: '/api/test-agents',
+      ai_health: '/api/ai/health',
+      ai_process: '/api/ai/process',
+      ai_test: '/api/ai/test',
+      ai_estimate: '/api/ai/estimate-cost',
     },
   });
 });
