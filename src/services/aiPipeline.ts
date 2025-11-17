@@ -7,7 +7,6 @@ import { generateImagePrompt } from "../agents/imagePromptAgent.js";
 import { generateEmbeddings } from "../agents/embeddingsAgent.js";
 import {
   validateMetadata,
-  ValidationResult,
 } from "../agents/validatorAgent.js";
 
 /**
@@ -187,7 +186,7 @@ export async function processMarkdownWithAI(
 
       // Quality assurance
       quality_score: validation.quality_score,
-      validation_report: validation.validation_report as Record<string, unknown>,
+      validation_report: validation.validation_report as unknown as Record<string, unknown>,
 
       // Metadata
       processing_time_ms: totalTime,

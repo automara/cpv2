@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import aiRoutes from './routes/aiRoutes.js';
+import moduleRoutes from './routes/moduleRoutes.js';
 
 // Load environment variables
 dotenv.config();
@@ -47,6 +48,7 @@ app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 
 // API Routes
 app.use('/api/ai', aiRoutes);
+app.use('/api/modules', moduleRoutes);
 
 // Health check endpoint
 app.get('/health', (_req, res) => {
@@ -66,10 +68,25 @@ app.get('/', (_req, res) => {
     description: 'Automated markdown publishing platform with AI-generated metadata',
     endpoints: {
       health: '/health',
-      ai_health: '/api/ai/health',
-      ai_process: '/api/ai/process',
-      ai_test: '/api/ai/test',
-      ai_estimate: '/api/ai/estimate-cost',
+      ai: {
+        health: '/api/ai/health',
+        process: '/api/ai/process',
+        test: '/api/ai/test',
+        estimate_cost: '/api/ai/estimate-cost',
+      },
+      modules: {
+        create: 'POST /api/modules/create',
+        upload: 'POST /api/modules/upload',
+        list: 'GET /api/modules',
+        get: 'GET /api/modules/:id',
+        update: 'PATCH /api/modules/:id',
+        delete: 'DELETE /api/modules/:id',
+        search: 'POST /api/modules/search',
+        stats: 'GET /api/modules/stats',
+        versions: 'GET /api/modules/:id/versions',
+        download: 'GET /api/modules/:id/download',
+        files: 'GET /api/modules/:id/files',
+      },
     },
   });
 });
