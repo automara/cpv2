@@ -6,6 +6,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import aiRoutes from './routes/aiRoutes.js';
 import moduleRoutes from './routes/moduleRoutes.js';
+import webflowRoutes from './routes/webflowRoutes.js';
 
 // Load environment variables
 dotenv.config();
@@ -49,6 +50,7 @@ app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 // API Routes
 app.use('/api/ai', aiRoutes);
 app.use('/api/modules', moduleRoutes);
+app.use('/api/webflow', webflowRoutes);
 
 // Health check endpoint
 app.get('/health', (_req, res) => {
@@ -86,6 +88,13 @@ app.get('/', (_req, res) => {
         versions: 'GET /api/modules/:id/versions',
         download: 'GET /api/modules/:id/download',
         files: 'GET /api/modules/:id/files',
+      },
+      webflow: {
+        health: 'GET /api/webflow/health',
+        sync: 'POST /api/webflow/sync/:id',
+        sync_batch: 'POST /api/webflow/sync-batch',
+        status: 'GET /api/webflow/status/:id',
+        webhook: 'POST /api/webflow/webhook',
       },
     },
   });
